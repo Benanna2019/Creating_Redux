@@ -1,6 +1,23 @@
 import React, { useReducer } from "react";
 import "./App.css";
 
+//
+const INCREMENT_COUNTER = "INCREMENT_COUNTER";
+const DECREMENT_COUNTER = "DECREMENT_COUNTER";
+
+//action types
+function incrementCounter() {
+  return {
+    type: INCREMENT_COUNTER,
+  };
+}
+
+function decrementCounter() {
+  return {
+    type: DECREMENT_COUNTER,
+  };
+}
+
 const reducer = (state, action) => {
   // if (action.type == "INCREMENT_COUNTER") {
   //   return { ...state, counter: state.counter + 1 };
@@ -11,9 +28,9 @@ const reducer = (state, action) => {
   // }
 
   switch (action.type) {
-    case "INCREMENT_COUNTER":
+    case INCREMENT_COUNTER:
       return { ...state, counter: state.counter + 1 };
-    case "DECREMENT_COUNTER":
+    case DECREMENT_COUNTER:
       return { ...state, counter: state.counter - 1 };
     default:
       return state;
@@ -30,12 +47,8 @@ function App() {
     <div className="App">
       <header className="App-header">
         {state.counter}
-        <button onClick={() => dispatch({ type: "INCREMENT_COUNTER" })}>
-          (+)
-        </button>
-        <button onClick={() => dispatch({ type: "DECREMENT_COUNTER" })}>
-          (-)
-        </button>
+        <button onClick={() => dispatch(incrementCounter())}>(+)</button>
+        <button onClick={() => dispatch(decrementCounter())}>(-)</button>
       </header>
     </div>
   );
